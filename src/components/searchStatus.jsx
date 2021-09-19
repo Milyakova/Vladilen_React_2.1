@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 const SearchStatus = ({ length }) => {
   const renderPhrase = (number) => {
     if (number === 0) {
@@ -9,7 +10,7 @@ const SearchStatus = ({ length }) => {
 
     if (
       [2, 3, 4].some((el) => {
-        let booly = el === number % 10 && Math.trunc(number / 10) !== 1;
+        const booly = el === number % 10 && Math.trunc(number / 10) !== 1;
         return booly;
       })
     ) {
@@ -31,6 +32,9 @@ const SearchStatus = ({ length }) => {
       <h2>{renderPhrase(length)}</h2>
     </React.Fragment>
   );
+};
+SearchStatus.propTypes = {
+  length: PropTypes.number
 };
 
 export default SearchStatus;

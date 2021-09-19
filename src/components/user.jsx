@@ -1,18 +1,19 @@
 import React from "react";
 import Qualitie from "./qualitie";
 import Bookmark from "./bookmark";
+import PropTypes from "prop-types";
 
 const User = ({
-  index,
-  onDelete,
-  onToggleBookmark,
   _id,
   name,
-  profession,
   qualities,
+  profession,
   completedMeetings,
   rate,
-  status = "Unmarked",
+  onDelete,
+  bookmark,
+  onToggleBookMark,
+  index
 }) => {
   return (
     <tr>
@@ -20,30 +21,79 @@ const User = ({
       <td>{name}</td>
       <td>
         {qualities.map((quality) => (
-          <Qualitie
-            key={quality._id}
-            name={quality.name}
-            color={quality.color}
-          />
+          <Qualitie key={quality._id} {...quality} />
         ))}
       </td>
       <td>{profession.name}</td>
       <td>{completedMeetings}</td>
-      <td>{rate}</td>
+      <td>{rate} /5</td>
       <td>
-        <Bookmark
-          onToggleBookmark={onToggleBookmark}
-          _id={_id}
-          status={status}
-        />
+        <Bookmark status={bookmark} onClick={() => onToggleBookMark(_id)} />
       </td>
       <td>
         <button onClick={() => onDelete(_id)} className="btn btn-danger">
-          Delete
+          delete
         </button>
       </td>
     </tr>
   );
 };
-
+User.propTypes = {
+  _id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  qualities: PropTypes.array,
+  profession: PropTypes.object.isRequired,
+  completedMeetings: PropTypes.number.isRequired,
+  rate: PropTypes.number.isRequired,
+  onDelete: PropTypes.func,
+  bookmark: PropTypes.bool,
+  onToggleBookMark: PropTypes.func,
+  index: PropTypes.number.isRequired
+};
 export default User;
+
+// const User = ({
+//   index,
+//   onDelete,
+//   onToggleBookmark,
+//   _id,
+//   name,
+//   profession,
+//   qualities,
+//   completedMeetings,
+//   rate,
+//   status = "Unmarked",
+// }) => {
+//   return (
+//     <tr>
+//       <th scope="row">{index + 1}</th>
+//       <td>{name}</td>
+//       <td>
+//         {qualities.map((quality) => (
+//           <Qualitie
+//             key={quality._id}
+//             name={quality.name}
+//             color={quality.color}
+//           />
+//         ))}
+//       </td>
+//       <td>{profession.name}</td>
+//       <td>{completedMeetings}</td>
+//       <td>{rate} /5</td>
+//       <td>
+//         <Bookmark
+//           onToggleBookmark={onToggleBookmark}
+//           _id={_id}
+//           status={status}
+//         />
+//       </td>
+//       <td>
+//         <button onClick={() => onDelete(_id)} className="btn btn-danger">
+//           Delete
+//         </button>
+//       </td>
+//     </tr>
+//   );
+// };
+
+// export default User;
