@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Users from "./users";
-import SearchStatus from "./searchStatus";
 import api from "../API/";
 
 function App() {
@@ -18,6 +17,7 @@ function App() {
       status = "Unmarked";
     }
     const updatedBookmark = users.map((item) => {
+      console.log("bookmark itewm", item);
       if (item._id === userId) {
         item.status = status;
         console.log(item);
@@ -31,7 +31,6 @@ function App() {
 
   return (
     <div>
-      <SearchStatus length={users.length} />
       <Users
         onDelete={handleDelete}
         onToggleBookmark={handleToggleBookmark}

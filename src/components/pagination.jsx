@@ -1,9 +1,9 @@
 import React from "react";
-import underscore from "lodash";
+import _ from "lodash";
 import PropTypes from "prop-types";
 const Pagination = ({ onPageChange, itemsCount, pageSize, currentPage }) => {
   const pageCount = Math.ceil(itemsCount / pageSize);
-  const pages = underscore.range(1, pageCount + 1);
+  const pages = _.range(1, pageCount + 1);
   if (pageCount === 1) return null;
   return (
     <nav>
