@@ -13,6 +13,10 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
+    "no-unreachable-loop": [
+      "error",
+      { ignore: ["ForInStatement", "ForOfStatement"] }
+    ],
     indent: ["off"],
     semi: [2, "always"],
     "space-before-function-paren": [

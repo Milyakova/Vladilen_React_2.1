@@ -9,11 +9,10 @@ import UserTable from "./userTable";
 import _ from "lodash";
 import { useParams } from "react-router";
 import UserCard from "./userCard";
-
-const Users = () => {
+import Search from "./search";
+const UsersList = () => {
   const params = useParams();
   const { userId } = params;
-  console.log("USERID-1", userId);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [users, setUsers] = useState();
@@ -21,6 +20,7 @@ const Users = () => {
   const [selectedProf, setSelectedProf] = useState();
   const pageSize = 4;
   const [sortBy, setSortBy] = useState({ iter: "name", order: "asc" });
+  const [searchingName, setSearchingName] = useState({ value: "" });
 
   useEffect(() => {
     console.log("send request users", api.users);
@@ -64,6 +64,7 @@ const Users = () => {
   }, [selectedProf]);
 
   const handleItemSelect = (item) => {
+    setSearchingName({ value: "" });
     setSelectedProf(item);
   };
 
@@ -73,13 +74,26 @@ const Users = () => {
   const handleSort = (item) => {
     setSortBy(item);
   };
+
   if (users) {
-    const filteredUsers = selectedProf
-      ? users.filter(
-          (user) =>
-            JSON.stringify(user.profession) === JSON.stringify(selectedProf)
-        )
-      : users;
+    let filteredUsers = [];
+
+    if (selectedProf) {
+      filteredUsers = users.filter(
+        (user) =>
+          JSON.stringify(user.profession) === JSON.stringify(selectedProf)
+      );
+    } else {
+      filteredUsers = users;
+    }
+
+    if (searchingName.value) {
+      filteredUsers = users.filter((user) => {
+        const r = searchingName.value;
+        const regEx = new RegExp(r, "gi");
+        return regEx.test(JSON.stringify(user.name));
+      });
+    }
 
     const count = filteredUsers.length;
     const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order]);
@@ -88,6 +102,13 @@ const Users = () => {
     const clearFilter = () => {
       setSelectedProf(undefined);
     };
+
+    const handleSearchChange = ({ target }) => {
+      setSearchingName((prevState) => ({ ...prevState, value: target.value }));
+      setSelectedProf(undefined);
+      console.log("handleSearchChange", searchingName);
+    };
+
     return (
       <>
         {userId && <UserCard userId={userId} />}
@@ -107,6 +128,13 @@ const Users = () => {
             )}
             <div className="d-flex flex-column">
               <SearchStatus length={count} />
+              <form>
+                <Search
+                  value={searchingName.value}
+                  onChange={handleSearchChange}
+                />
+              </form>
+
               {count > 0 && (
                 <UserTable
                   users={usersCrop}
@@ -139,9 +167,9 @@ const Users = () => {
   );
 };
 
-Users.propTypes = {
+UsersList.propTypes = {
   users: PropTypes.array,
   index: PropTypes.number
 };
 
-export default Users;
+export default UsersList;
