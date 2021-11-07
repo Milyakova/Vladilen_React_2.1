@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/Vladilen_React_2.1/static/css/main.5797e676.chunk.css",
-    "main.js": "/Vladilen_React_2.1/static/js/main.e7440ad9.chunk.js",
-    "main.js.map": "/Vladilen_React_2.1/static/js/main.e7440ad9.chunk.js.map",
-    "runtime-main.js": "/Vladilen_React_2.1/static/js/runtime-main.c84a3726.js",
-    "runtime-main.js.map": "/Vladilen_React_2.1/static/js/runtime-main.c84a3726.js.map",
+    "main.js": "/Vladilen_React_2.1/static/js/main.8130941c.chunk.js",
+    "main.js.map": "/Vladilen_React_2.1/static/js/main.8130941c.chunk.js.map",
+    "runtime-main.js": "/Vladilen_React_2.1/static/js/runtime-main.d94edf56.js",
+    "runtime-main.js.map": "/Vladilen_React_2.1/static/js/runtime-main.d94edf56.js.map",
     "static/css/2.983f79de.chunk.css": "/Vladilen_React_2.1/static/css/2.983f79de.chunk.css",
-    "static/js/2.509a5c53.chunk.js": "/Vladilen_React_2.1/static/js/2.509a5c53.chunk.js",
-    "static/js/2.509a5c53.chunk.js.map": "/Vladilen_React_2.1/static/js/2.509a5c53.chunk.js.map",
-    "static/js/3.de0c6709.chunk.js": "/Vladilen_React_2.1/static/js/3.de0c6709.chunk.js",
-    "static/js/3.de0c6709.chunk.js.map": "/Vladilen_React_2.1/static/js/3.de0c6709.chunk.js.map",
+    "static/js/2.730aa326.chunk.js": "/Vladilen_React_2.1/static/js/2.730aa326.chunk.js",
+    "static/js/2.730aa326.chunk.js.map": "/Vladilen_React_2.1/static/js/2.730aa326.chunk.js.map",
+    "static/js/3.97fe0287.chunk.js": "/Vladilen_React_2.1/static/js/3.97fe0287.chunk.js",
+    "static/js/3.97fe0287.chunk.js.map": "/Vladilen_React_2.1/static/js/3.97fe0287.chunk.js.map",
     "index.html": "/Vladilen_React_2.1/index.html",
     "static/css/2.983f79de.chunk.css.map": "/Vladilen_React_2.1/static/css/2.983f79de.chunk.css.map",
     "static/css/main.5797e676.chunk.css.map": "/Vladilen_React_2.1/static/css/main.5797e676.chunk.css.map",
-    "static/js/2.509a5c53.chunk.js.LICENSE.txt": "/Vladilen_React_2.1/static/js/2.509a5c53.chunk.js.LICENSE.txt"
+    "static/js/2.730aa326.chunk.js.LICENSE.txt": "/Vladilen_React_2.1/static/js/2.730aa326.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c84a3726.js",
+    "static/js/runtime-main.d94edf56.js",
     "static/css/2.983f79de.chunk.css",
-    "static/js/2.509a5c53.chunk.js",
+    "static/js/2.730aa326.chunk.js",
     "static/css/main.5797e676.chunk.css",
-    "static/js/main.e7440ad9.chunk.js"
+    "static/js/main.8130941c.chunk.js"
   ]
 }
