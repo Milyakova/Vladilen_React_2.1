@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./navBar";
+import NavBar from "../components/ui/navBar";
 import Main from "../layouts/main";
 import Login from "../layouts/login";
 import Users from "../layouts/users";
@@ -12,8 +12,9 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact component={Main} />
-        <Route path="/login" component={Login} />
-        <Route path="/users/:userId?" component={Users} />
+        <Route path="/login/:type?" component={Login} />
+        <Route path="/users/:userId?/:edit?" component={Users} />
+
         <Redirect from="/main" to="/" />
         <Route path="/404" component={NotFound} />
         <Redirect to="/404" />

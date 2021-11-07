@@ -4,8 +4,12 @@ import PropTypes from "prop-types";
 const QualitiesList = ({ qualities }) => {
   return (
     <>
-      {qualities.map((quality) => (
-        <Qualitie key={quality._id} {...quality} />
+      {!Array.isArray(qualities) &&
+        Object.keys(qualities).map((quality) => (
+          <Qualitie key={qualities[quality]._id} {...quality} />
+        ))}
+      {qualities.map((qual) => (
+        <Qualitie key={qual._id} {...qual} />
       ))}
     </>
   );

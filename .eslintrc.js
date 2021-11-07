@@ -13,6 +13,7 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
+    "multiline-ternary": ["off"],
     "no-unreachable-loop": [
       "error",
       { ignore: ["ForInStatement", "ForOfStatement"] }

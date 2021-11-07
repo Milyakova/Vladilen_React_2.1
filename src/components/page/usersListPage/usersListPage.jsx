@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import Pagination from "./pagination";
-import { paginate } from "../utils/paginate";
+import Pagination from "../../common/pagination";
+import { paginate } from "../../../utils/paginate";
 import PropTypes from "prop-types";
-import GroupList from "./groupList";
-import api from "../API";
-import SearchStatus from "./searchStatus";
-import UserTable from "./userTable";
+import GroupList from "../../common/groupList";
+import api from "../../../API";
+import SearchStatus from "../../ui/searchStatus";
+import UserTable from "../../ui/userTable";
 import _ from "lodash";
 import { useParams } from "react-router";
-import UserCard from "./userCard";
-import Search from "./search";
-const UsersList = () => {
+import UserPage from "../userPage/userPage";
+import Search from "../../common/form/search";
+
+const UsersListPage = () => {
   const params = useParams();
   const { userId } = params;
 
@@ -27,6 +28,13 @@ const UsersList = () => {
     api.users.fetchAll().then((data) => {
       console.log("DATA", data);
       setUsers(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.professions.fetchAll().then((dataa) => {
+      console.log("professions", dataa);
+      setProfessions(dataa);
     });
   }, []);
 
@@ -50,14 +58,6 @@ const UsersList = () => {
 
     setUsers(updatedBookmark);
   };
-
-  useEffect(() => {
-    console.log("send request PROFESSIONS", api.professions);
-    api.professions.fetchAll().then((data) => {
-      console.log("data prof", data);
-      setProfessions(data);
-    });
-  }, []);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -111,7 +111,7 @@ const UsersList = () => {
 
     return (
       <>
-        {userId && <UserCard userId={userId} />}
+        {userId && <UserPage userId={userId} />}
         {!userId && (
           <div className="d-flex">
             {professions && (
@@ -167,9 +167,9 @@ const UsersList = () => {
   );
 };
 
-UsersList.propTypes = {
+UsersListPage.propTypes = {
   users: PropTypes.array,
   index: PropTypes.number
 };
 
-export default UsersList;
+export default UsersListPage;
