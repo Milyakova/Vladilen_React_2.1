@@ -13,7 +13,7 @@ const Login = () => {
       prevState === "register" ? "login" : "register"
     );
   };
-
+  console.log(process.env);
   return (
     <div className="container mt-5">
       <div className="row">
@@ -33,9 +33,13 @@ const Login = () => {
             <>
               <h3 className="mb-4">Login</h3>
               <LoginForm />
-              <p>
+              <p className="mt-2 text-center">
                 Dont have account?
-                <a role="button" onClick={toggleFormType}>
+                <a
+                  className=" text-primary"
+                  role="button"
+                  onClick={toggleFormType}
+                >
                   Registration
                 </a>
               </p>

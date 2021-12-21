@@ -8,24 +8,29 @@ import NotFound from "./notFound";
 import { ToastContainer } from "react-toastify";
 import { ProfessionProvider } from "../hooks/useProfession";
 import { QualityProvider } from "../hooks/useQualities";
+import AuthProvider from "../hooks/useAuth";
+import LoginProvider from "../hooks/useLogin";
 
 function App() {
   return (
     <>
-      <NavBar />
-
-      <Switch>
-        <ProfessionProvider>
-          <QualityProvider>
-            <Route path="/login/:type?" component={Login} />
-            <Route path="/users/:userId?/:edit?" component={Users} />
-          </QualityProvider>
-        </ProfessionProvider>
-        <Route path="/" exact component={Main} />
-        <Redirect from="/main" to="/" />
-        <Route path="/404" component={NotFound} />
-        <Redirect to="/404" />
-      </Switch>
+      <AuthProvider>
+        <LoginProvider>
+          <NavBar />
+          <ProfessionProvider>
+            <QualityProvider>
+              <Switch>
+                <Route path="/login/:type?" component={Login} />
+                <Route path="/users/:userId?/:edit?" component={Users} />
+                <Route path="/" exact component={Main} />
+                <Redirect to="/" />
+                <Route path="/404" component={NotFound} />
+                <Redirect to="/404" />
+              </Switch>
+            </QualityProvider>
+          </ProfessionProvider>
+        </LoginProvider>
+      </AuthProvider>
       <ToastContainer />
     </>
   );
