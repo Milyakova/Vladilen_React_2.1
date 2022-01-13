@@ -25,14 +25,7 @@ const UsersListPage = () => {
   const { users } = useUser();
   console.log("USERS ", users);
 
-  const { professions } = useProfession();
-  console.log("PROFESSIONS ", professions);
-
-  // useEffect(() => {
-  //   API.professions.fetchAll().then((data) => {
-  //     setProfessions(data);
-  //   });
-  // }, []);
+  const { isLoading: professionsLoading, professions } = useProfession();
 
   const handleDelete = (userId) => {
     // const updatedUsers = users.filter((item) => item._id !== userId);
@@ -116,7 +109,7 @@ const UsersListPage = () => {
     return (
       <>
         <div className="d-flex">
-          {professions && (
+          {professions && !professionsLoading && (
             <div className="d-flex-flex-column flex-shrink-0 p-3">
               <GroupList
                 items={professions}

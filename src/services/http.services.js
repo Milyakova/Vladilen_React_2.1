@@ -1,17 +1,37 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import configJson from "../config.json";
+import { httpAuth } from "../hooks/useAuth";
+import localStorageService from "./localStorage.service";
 
 const http = axios.create({ baseURL: configJson.apiEndPoint });
 
 http.interceptors.request.use(
-  function (config) {
+  async function (config) {
     if (configJson.isFireBase) {
       const containSlash = /\/$/gi.test(config.url);
       config.url =
         (containSlash ? config.url.slice(0, -1) : config.url) + ".json";
+      const expiresDate = localStorageService.getTokenExpiresDate();
+      const refreshToken = localStorageService.getRefreshToken();
+      if (refreshToken && expiresDate < Date.now()) {
+        const { data } = await httpAuth.post("token", {
+          grant_type: "refresh_token",
+          refresh_token: refreshToken
+        });
+
+        localStorageService.setTokens({
+          refreshToken: data.refresh_token,
+          idToken: data.id_token,
+          expiresIn: data.expires_in,
+          localId: data.user_id
+        });
+      }
+      const acessToken = localStorageService.getAccessToken();
+      if (acessToken) {
+        config.params = { ...config.params, auth: acessToken };
+      }
     }
-    console.log(config.url);
     return config;
   },
   function (error) {
@@ -49,6 +69,7 @@ const httpServices = {
   get: http.get,
   post: http.post,
   put: http.put,
-  delete: http.delete
+  delete: http.delete,
+  patch: http.patch
 };
 export default httpServices;

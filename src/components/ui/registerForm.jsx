@@ -17,6 +17,7 @@ const RegisterForm = () => {
     password: "",
     profession: "",
     sex: "male",
+    name: "",
     qualities: [],
     license: false
   });
@@ -50,6 +51,13 @@ const RegisterForm = () => {
       min: {
         message: "Пароль должен состоять минимум из 8 символов",
         value: 8
+      }
+    },
+    name: {
+      isRequired: { message: "Имя обязательно для заполнения" },
+      min: {
+        message: "Имя должно состоять минимум из 3 символов",
+        value: 3
       }
     },
     profession: {
@@ -102,6 +110,13 @@ const RegisterForm = () => {
         value={data.password}
         onChange={handleChange}
         error={errors.password}
+      />
+      <TextField
+        label="введите имя"
+        name="name"
+        value={data.name}
+        onChange={handleChange}
+        error={errors.name}
       />
       <SelectField
         label="Выбери свою профессию"
