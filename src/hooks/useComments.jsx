@@ -31,7 +31,7 @@ export const CommentsProvider = ({ children }) => {
       created_at: Date.now(),
       userId: currentUser._id
     };
-    console.log(comment);
+
     try {
       const { content } = await commentService.createComment(comment);
       setComments((prevState) => [...prevState, content]);
@@ -43,7 +43,6 @@ export const CommentsProvider = ({ children }) => {
     try {
       const { content } = await commentService.getComments(userId);
       setComments(content);
-      console.log(content);
     } catch (error) {
       errorCatcher(error);
     } finally {

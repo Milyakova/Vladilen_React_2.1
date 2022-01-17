@@ -6,16 +6,11 @@ import GroupList from "../../common/groupList";
 import SearchStatus from "../../ui/searchStatus";
 import UserTable from "../../ui/userTable";
 import _ from "lodash";
-// import { useParams } from "react-router";
-// import UserPage from "../userPage/userPage";
 import Search from "../../common/form/search";
 import { useUser } from "../../../hooks/useUsers";
 import { useProfession } from "../../../hooks/useProfession";
 
 const UsersListPage = () => {
-  // const params = useParams();
-  // const { userId } = params;
-
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProf, setSelectedProf] = useState();
   const pageSize = 8;
@@ -23,8 +18,6 @@ const UsersListPage = () => {
   const [searchingName, setSearchingName] = useState("");
 
   const { users } = useUser();
-  console.log("USERS ", users);
-
   const { isLoading: professionsLoading, professions } = useProfession();
 
   const handleDelete = (userId) => {
@@ -32,22 +25,6 @@ const UsersListPage = () => {
     // setUsers(updatedUsers);
     console.log(userId);
   };
-
-  // const handleToggleBookmark = (userId, status) => {
-  //   if (!status || status === undefined) {
-  //     status = true;
-  //   } else {
-  //     status = false;
-  //   }
-  //   const updatedBookmark = users.map((item) => {
-  //     if (item._id === userId) {
-  //       item.bookmark = status;
-  //     }
-  //     return item;
-  //   });
-
-  //   setUsers(updatedBookmark);
-  // };
 
   const handleToggleBookmark = (id) => {
     const newArray = users.map((user) => {

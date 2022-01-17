@@ -29,8 +29,9 @@ const UserPage = ({ userId }) => {
         </div>
       </div>
     );
+  } else {
+    return <Loader />;
   }
-  return <Loader />;
 };
 
 export default UserPage;

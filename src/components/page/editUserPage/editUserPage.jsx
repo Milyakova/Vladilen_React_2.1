@@ -24,7 +24,6 @@ const EditUserPage = () => {
   };
 
   const getQualities = (qualIds) => {
-    console.log("QUAL_IDS: ", qualIds);
     const qualitiesArray = [];
     for (const qid of qualIds) {
       for (const quality of qualities) {
@@ -139,7 +138,7 @@ const EditUserPage = () => {
                 label="Выберите ваш пол"
               />
               <MultiSelectField
-                defaultValue={data.qualities}
+                defaultValue={transformData(data.qualities)}
                 options={qualitiesList}
                 onChange={handleChange}
                 values

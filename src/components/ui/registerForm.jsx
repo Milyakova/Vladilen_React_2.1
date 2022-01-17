@@ -143,6 +143,7 @@ const RegisterForm = () => {
         onChange={handleChange}
         name="qualities"
         label="Выберите качества"
+        value={data.qualities}
       />
       <CheckBoxField
         value={data.license}
