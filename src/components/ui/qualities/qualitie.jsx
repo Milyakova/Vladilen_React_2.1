@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useQuality } from "../../../hooks/useQualities";
+import { useSelector } from "react-redux";
+import {
+  getQualities,
+  getQualitiesLoadingStatus
+} from "../../../store/qualities";
 
 const Qualitie = ({ id }) => {
-  const { isLoading, getQuality } = useQuality();
-  const qual = getQuality(id);
+  const qualities = useSelector(getQualities());
+  const isLoading = useSelector(getQualitiesLoadingStatus());
+
+  const qual = (id) => qualities.find((q) => q._id === id);
+
   if (!isLoading) {
     return <span className={"badge bg-" + qual.color}>{qual.name}</span>;
   } else return "Loading";

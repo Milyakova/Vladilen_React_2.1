@@ -23,9 +23,6 @@ const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const history = useHistory();
-  function randomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
 
   async function logIn({ email, password }) {
     try {

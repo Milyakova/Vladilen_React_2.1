@@ -6,30 +6,26 @@ import Users from "../layouts/users";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NotFound from "./notFound";
 import { ToastContainer } from "react-toastify";
-import { ProfessionProvider } from "../hooks/useProfession";
-import { QualityProvider } from "../hooks/useQualities";
-import AuthProvider from "../hooks/useAuth";
+
 import ProtectedRoute from "./common/protectedRoutes";
 import LogOut from "../layouts/logout";
+import AppLoader from "./ui/hoc/appLoader";
 
 function App() {
   return (
     <>
-      <AuthProvider>
+      <AppLoader>
         <NavBar />
-        <ProfessionProvider>
-          <QualityProvider>
-            <Switch>
-              <Route path="/login/:type?" component={Login} />
-              <ProtectedRoute path="/users/:userId?/:edit?" component={Users} />
-              <Route path="/" exact component={Main} />
-              <Route path="/logout" component={LogOut} />
-              <Route path="/404" component={NotFound} />
-              <Redirect to="/404" />
-            </Switch>
-          </QualityProvider>
-        </ProfessionProvider>
-      </AuthProvider>
+
+        <Switch>
+          <Route path="/login/:type?" component={Login} />
+          <ProtectedRoute path="/users/:userId?/:edit?" component={Users} />
+          <Route path="/" exact component={Main} />
+          <Route path="/logout" component={LogOut} />
+          <Route path="/404" component={NotFound} />
+          <Redirect to="/404" />
+        </Switch>
+      </AppLoader>
       <ToastContainer />
     </>
   );

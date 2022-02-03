@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import Comments from "../../ui/comments";
 import Loader from "../../../utils/loader";
-import { useUser } from "../../../hooks/useUsers";
+
 import UserCard from "../../ui/userCard";
-import QualitiesCard from "../../ui/qualitiesCard";
+// import QualitiesCard from "../../ui/qualitiesCard";
 import MeetingsCard from "../../ui/meetingsCard";
-import { CommentsProvider } from "../../../hooks/useComments";
+import { useSelector } from "react-redux";
+import { getUserById } from "../../../store/users";
+import QualitiesCard from "../../../components/ui/qualitiesCard";
 
 const UserPage = ({ userId }) => {
-  const { getUserById } = useUser();
-  const user = getUserById(userId);
+  const user = useSelector(getUserById(userId));
 
   if (user) {
     return (
@@ -22,9 +23,7 @@ const UserPage = ({ userId }) => {
             <MeetingsCard value={user.completedMeetings} />
           </div>
           <div className="col-md-8">
-            <CommentsProvider>
-              <Comments />
-            </CommentsProvider>
+            <Comments />
           </div>
         </div>
       </div>

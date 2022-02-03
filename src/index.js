@@ -4,13 +4,20 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./components/app";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore } from "./store/createStore";
+import history from "./utils/history";
+
+const store = createStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
